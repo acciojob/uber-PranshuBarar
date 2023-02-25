@@ -70,7 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 		}
 		if(driver==null) {
-			throw new Exception();
+			throw new Exception("No cab available!");
 		}
 
 		TripBooking newTripBooked = new TripBooking();
@@ -92,6 +92,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//Cancel the trip having given trip Id and update TripBooking attributes accordingly
 		TripBooking bookedTrip = tripBookingRepository2.findById(tripId).get();
 		bookedTrip.setStatus(TripStatus.CANCELED);
+		bookedTrip.setBill(0);
 		tripBookingRepository2.save(bookedTrip);
 
 
