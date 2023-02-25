@@ -39,11 +39,17 @@ public class CustomerServiceImpl implements CustomerService {
 		//Now we will set the cab as available for each and every trip booked by this customer,
 		//who is going to be deleted
 
-		for(TripBooking trip : bookedTrips){
-			Driver driver = trip.getDriver();
-			Cab cab = driver.getCab();
-			cab.setAvailable(true);
-			driverRepository2.save(driver);
+//		for(TripBooking trip : bookedTrips){
+//			Driver driver = trip.getDriver();
+//			Cab cab = driver.getCab();
+//			cab.setAvailable(true);
+//			driverRepository2.save(driver);
+//		}
+
+		for(TripBooking tripBooking : bookedTrips){
+			if(tripBooking.getStatus() == TripStatus.CONFIRMED){
+				tripBooking.setStatus(TripStatus.CANCELED);
+			}
 		}
 
 		/* We are doing all these above things because customer table is not joined with the driver or cab table
@@ -68,7 +74,6 @@ public class CustomerServiceImpl implements CustomerService {
 				if((driver == null) || (currDriver.getDriverId() < driver.getDriverId())){
 					driver = currDriver;
 				}
-
 			}
 		}
 		if(driver==null) {
