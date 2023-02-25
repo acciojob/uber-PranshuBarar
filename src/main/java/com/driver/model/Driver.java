@@ -17,7 +17,7 @@ public class Driver{
 
     //For mapping to tripBooking(Child)
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
-    List<TripBooking> tripBookingList;
+    List<TripBooking> tripBookingList = new ArrayList<>();
 
     //For mapping to Cab(Parent)
     @OneToOne(mappedBy = "driver", cascade = CascadeType.ALL)

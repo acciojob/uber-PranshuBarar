@@ -17,7 +17,7 @@ public class Customer{
 
     //For Mapping
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    List<TripBooking> tripBookingList;
+    List<TripBooking> tripBookingList = new ArrayList<>();
 
     public Customer() {
     }
