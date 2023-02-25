@@ -10,10 +10,7 @@ import com.driver.repository.CustomerRepository;
 import com.driver.repository.DriverRepository;
 import com.driver.repository.TripBookingRepository;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -67,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Driver> driverList = driverRepository2.findAll(Sort.by(Sort.Direction.ASC, "driverId"));
 		Driver driver = null;
 		for(Driver currDriver : driverList){
-			if(currDriver.getCab().isAvailable()){
+			if(currDriver.getCab().getAvailable()){
 				driver = currDriver;
 				break;
 			}
